@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,7 +44,17 @@ public class AddMusicianServlet extends HttpServlet {
 		String last = request.getParameter("lastName");
 		String instrument = request.getParameter("instrument");
 		String band = request.getParameter("band");
-		Musician m = new Musician(first, last, instrument);
+		BandHelper bh = new BandHelper();
+		List<Band> bandList  = bh.showAllBands();
+		int temp = 0;
+		for(int i = 0; i < bandList.size(); i++) {
+			if(bandList.get(i).getBandName().equals(band)) {
+				temp = i;
+				
+			}
+		}
+		
+		Musician m = new Musician(first, last, instrument, bandList.get(temp));
 		MusicianHelper dao = new MusicianHelper();
 		dao.insertMusician(m);
 		getServletContext().getRequestDispatcher("/ViewAllMusiciansServlet").forward(request, response);

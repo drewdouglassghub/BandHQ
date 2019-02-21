@@ -14,7 +14,7 @@
 		<c:forEach var="member" items="${bandMembers}">
 			<tr>
 				<td></td>
-				<td colspan="3">${member.firstName}, ${member.lastName}</td>
+				<td colspan="3">${member.firstName} ${member.lastName} ${member.instrument}</td>
 			</tr>
 		</c:forEach>
 	</table>
