@@ -43,14 +43,13 @@ public class AddMusicianServlet extends HttpServlet {
 		String first = request.getParameter("firstName");
 		String last = request.getParameter("lastName");
 		String instrument = request.getParameter("instrument");
-		String band = request.getParameter("band");
+		String band = request.getParameter("bandName");
 		BandHelper bh = new BandHelper();
 		List<Band> bandList  = bh.showAllBands();
 		int temp = 0;
 		for(int i = 0; i < bandList.size(); i++) {
 			if(bandList.get(i).getBandName().equals(band)) {
-				temp = i;
-				
+				temp = i;			
 			}
 		}
 		
